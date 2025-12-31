@@ -13,6 +13,7 @@ canvas#fuegos {
     z-index:0;
 }
 
+/* Pantalla inicial centrada */
 .pantalla-inicial {
     position:fixed;
     top:0; left:0;
@@ -30,40 +31,53 @@ canvas#fuegos {
     margin-bottom:30px;
 }
 
-.pantalla-inicial button {
-    padding:15px 30px;
-    font-size:1.2em;
-    margin:10px;
+#selectorIdioma, #selectorDestinatario {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+#selectorIdioma button, #selectorDestinatario button{
+    padding:15px 35px;
+    font-size:1.3em;
+    margin:12px;
     border:none;
     border-radius:12px;
     background:#00e676;
     cursor:pointer;
     color:#000;
-    transition: transform 0.2s ease;
+    font-weight:bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, background 0.2s ease;
 }
-.pantalla-inicial button:hover {transform: scale(1.1) rotate(-3deg);}
+#selectorIdioma button:hover, #selectorDestinatario button:hover {
+    transform: scale(1.1) rotate(-2deg);
+    background:#76ff03;
+}
 
+/* Carta centrada con scroll si es necesario */
 .carta {
     display:none;
     position:relative;
     z-index:2;
     max-width:600px;
     margin:50px auto;
-    padding:30px;
-    background: rgba(0,0,0,0.7);
-    border-radius:20px;
+    padding:30px 40px;
+    background: rgba(0,0,0,0.75);
+    border-radius:25px;
     color:#fff;
-    box-shadow:0 0 50px rgba(0,0,0,0.7);
+    box-shadow:0 0 40px rgba(0,0,0,0.8);
     overflow:auto;
     max-height:80vh;
+    text-align:center;
 }
 
-h1 {font-size:2.5em; margin-bottom:20px; animation: parpadeo 1.5s infinite;}
+h1 {font-size:2.5em; margin-bottom:25px; animation: parpadeo 1.5s infinite;}
 
 p {
-    font-size:1.15em;
-    line-height:1.5;
-    margin-bottom:20px;
+    font-size:1.2em;
+    line-height:1.6;
+    margin-bottom:22px;
     opacity:0;
     transform: translateY(20px);
     animation: colorChange 4s infinite alternate;
@@ -86,14 +100,17 @@ p {
 }
 
 #despedirBtn{
-    padding:12px 25px;
-    font-size:1.1em;
+    padding:14px 30px;
+    font-size:1.2em;
     border:none;
-    border-radius:12px;
+    border-radius:15px;
     background:#00e676;
     color:#000;
+    font-weight:bold;
     cursor:pointer;
-    transition: transform 0.2s ease;
+    margin-top:20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 #despedirBtn:hover {transform: scale(1.2) rotate(-5deg); background:#76ff03;}
 
