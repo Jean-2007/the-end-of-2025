@@ -1,0 +1,100 @@
+html, body {
+    margin:0; padding:0;
+    height:100%; width:100%;
+    font-family: 'Segoe UI', sans-serif;
+    background: black;
+    overflow:hidden;
+}
+
+canvas#fuegos {
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    z-index:0;
+}
+
+.pantalla-inicial {
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.95);
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    z-index:3;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+}
+
+.pantalla-inicial h2 {
+    font-size:2em;
+    margin-bottom:30px;
+}
+
+.pantalla-inicial button {
+    padding:15px 30px;
+    font-size:1.2em;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    background:#00e676;
+    cursor:pointer;
+    color:#000;
+    transition: transform 0.2s ease;
+}
+.pantalla-inicial button:hover {transform: scale(1.1) rotate(-3deg);}
+
+.carta {
+    display:none;
+    position:relative;
+    z-index:2;
+    max-width:600px;
+    margin:50px auto;
+    padding:30px;
+    background: rgba(0,0,0,0.7);
+    border-radius:20px;
+    color:#fff;
+    box-shadow:0 0 50px rgba(0,0,0,0.7);
+    overflow:auto;
+    max-height:80vh;
+}
+
+h1 {font-size:2.5em; margin-bottom:20px; animation: parpadeo 1.5s infinite;}
+
+p {
+    font-size:1.15em;
+    line-height:1.5;
+    margin-bottom:20px;
+    opacity:0;
+    transform: translateY(20px);
+    animation: colorChange 4s infinite alternate;
+}
+
+@keyframes parpadeo {
+    0%,50%,100%{opacity:1;}
+    25%,75%{opacity:0.5;}
+}
+@keyframes aparecerParrafo{
+    0%{opacity:0; transform:translateY(20px);}
+    100%{opacity:1; transform:translateY(0);}
+}
+@keyframes colorChange{
+    0%{color:#ff4081;}
+    25%{color:#fdd835;}
+    50%{color:#00e5ff;}
+    75%{color:#76ff03;}
+    100%{color:#ff4081;}
+}
+
+#despedirBtn{
+    padding:12px 25px;
+    font-size:1.1em;
+    border:none;
+    border-radius:12px;
+    background:#00e676;
+    color:#000;
+    cursor:pointer;
+    transition: transform 0.2s ease;
+}
+#despedirBtn:hover {transform: scale(1.2) rotate(-5deg); background:#76ff03;}
+
+.confeti, .emoji{position:absolute; top:-20px; font-size:20px; pointer-events:none;}
