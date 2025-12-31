@@ -17,7 +17,6 @@
         background: black;
     }
 
-    /* Fondo animado de fuegos artificiales */
     canvas#fuegos {
         position: absolute;
         top: 0;
@@ -37,6 +36,7 @@
         text-align: center;
         color: #fff;
         box-shadow: 0 0 50px rgba(0,0,0,0.7);
+        display: none; /* Oculta hasta elegir destinatario */
     }
 
     h1 {
@@ -81,20 +81,12 @@
         color: #000;
         cursor: pointer;
         transition: transform 0.2s ease;
+        margin: 10px;
     }
 
     button:hover {
         transform: scale(1.2) rotate(-5deg);
         background: #76ff03;
-    }
-
-    select {
-        margin-bottom: 15px;
-        padding: 8px 12px;
-        font-size: 1em;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
     }
 
     .confeti, .emoji {
@@ -104,32 +96,51 @@
         pointer-events: none;
     }
 
+    /* Pantalla inicial */
+    .pantalla-inicial {
+        position: absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+        color: #fff;
+        text-align: center;
+    }
+
+    .pantalla-inicial h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
 </style>
 </head>
 <body>
 
 <canvas id="fuegos"></canvas>
 
-<div class="carta">
+<div class="pantalla-inicial" id="inicio">
+    <h2>¿Para quién es esta carta?</h2>
+    <button data-tipo="amigos">Amigos</button>
+    <button data-tipo="conocidos">Conocidos</button>
+</div>
+
+<div class="carta" id="carta">
     <h1>¡Adiós, 2025!</h1>
-
-    <select id="tipoDestinatario">
-        <option value="amigos">Amigos</option>
-        <option value="conocidos">Conocidos</option>
-    </select>
-
     <div id="mensaje"></div>
-
     <button id="despedirBtn">Despedir Año con Estilo</button>
 </div>
 
 <script>
+    // Fuegos artificiales
     const canvas = document.getElementById('fuegos');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    // Fuegos artificiales simples
     let particles = [];
     function crearFuego() {
         const x = Math.random() * canvas.width;
@@ -147,7 +158,6 @@
             });
         }
     }
-
     function animarFuegos(){
         ctx.clearRect(0,0,canvas.width,canvas.height);
         particles.forEach((p,i)=>{
@@ -165,11 +175,6 @@
     }
     setInterval(crearFuego, 800);
     animarFuegos();
-
-    // Carta y mensajes
-    const btn = document.getElementById('despedirBtn');
-    const mensaje = document.getElementById('mensaje');
-    const selector = document.getElementById('tipoDestinatario');
 
     const mensajes = {
         amigos: `Si estás leyendo esto, es porque de alguna forma fuiste parte de mi 2025.  
@@ -207,34 +212,41 @@ este tiempo en el mundo conmigo.
 Feliz Año Nuevo 🎉`
     };
 
-    let tipoDestinatario = selector.value;
+    const inicio = document.getElementById('inicio');
+    const carta = document.getElementById('carta');
+    const mensaje = document.getElementById('mensaje');
+    const btn = document.getElementById('despedirBtn');
 
-    function mostrarParrafos(texto, elemento, callback) {
-        elemento.innerHTML = "";
+    let tipoDestinatario = "";
+
+    // Función mostrar párrafos con animación
+    function mostrarParrafos(texto, elemento, callback){
+        elemento.innerHTML="";
         const parrafos = texto.split("\n\n");
         let i=0;
-        function mostrarSiguienteParrafo() {
+        function mostrarSiguienteParrafo(){
             if(i>=parrafos.length){ if(callback) callback(); return;}
-            const p = document.createElement('p');
+            const p = document.createElement("p");
             p.textContent = parrafos[i].trim();
             elemento.appendChild(p);
             p.style.animation = "aparecerParrafo 0.8s ease forwards";
             i++;
-            setTimeout(mostrarSiguienteParrafo, 900);
+            setTimeout(mostrarSiguienteParrafo,900);
         }
         mostrarSiguienteParrafo();
     }
 
-    mostrarParrafos(mensajes[tipoDestinatario], mensaje);
-
-    selector.addEventListener('change', ()=>{
-        tipoDestinatario = selector.value;
-        mostrarParrafos(mensajes[tipoDestinatario], mensaje);
-        btn.disabled=false;
-        btn.textContent="Despedir Año con Estilo";
+    // Botones de selección inicial
+    inicio.querySelectorAll('button').forEach(b=>{
+        b.addEventListener('click', ()=>{
+            tipoDestinatario = b.getAttribute('data-tipo');
+            inicio.style.display='none';
+            carta.style.display='block';
+            mostrarParrafos(mensajes[tipoDestinatario], mensaje);
+        });
     });
 
-    // Confeti y emojis flotantes
+    // Confeti y emojis
     function lanzarConfeti() {
         for(let i=0;i<50;i++){
             const conf = document.createElement('div');
@@ -251,16 +263,16 @@ Feliz Año Nuevo 🎉`
             emoji.textContent = ['🎉','🥳','✨','🎆'][Math.floor(Math.random()*4)];
             emoji.style.left = Math.random()*window.innerWidth+'px';
             document.body.appendChild(emoji);
-            moverElemento(emoji, true);
+            moverElemento(emoji,true);
         }
     }
 
-    function moverElemento(el, isEmoji=false){
+    function moverElemento(el,isEmoji=false){
         let top=0;
-        const velocidad = 2+Math.random()*3;
-        const interval = setInterval(()=>{
+        const velocidad=2+Math.random()*3;
+        const interval=setInterval(()=>{
             top+=velocidad;
-            el.style.top = top+'px';
+            el.style.top=top+'px';
             if(top>window.innerHeight){
                 el.remove();
                 clearInterval(interval);
@@ -268,13 +280,13 @@ Feliz Año Nuevo 🎉`
         },20);
     }
 
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click',()=>{
         lanzarConfeti();
-        mostrarParrafos("🎉 ¡El año ha sido despedido con estilo! Feliz 2026 🎉", mensaje);
+        mostrarParrafos("🎉 ¡El año ha sido despedido con estilo! Feliz 2026 🎉",mensaje);
         btn.disabled=true;
         btn.textContent="¡Feliz Año Nuevo!";
     });
-</script>
 
+</script>
 </body>
 </html>
