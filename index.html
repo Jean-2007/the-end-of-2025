@@ -11,13 +11,22 @@
 <canvas id="fuegos"></canvas>
 
 <div class="pantalla-inicial" id="inicio">
-    <h2>¿Para quién es esta carta?</h2>
-    <button data-tipo="amigos">Amigos</button>
-    <button data-tipo="conocidos">Conocidos</button>
+    <h2 id="tituloIdioma">Select your language / Sprache wählen</h2>
+    <div id="selectorIdioma">
+        <button data-idioma="es">Español</button>
+        <button data-idioma="en">English</button>
+        <button data-idioma="de">Deutsch</button>
+    </div>
+
+    <div id="selectorDestinatario" style="display:none;">
+        <h2 id="preguntaDestino"></h2>
+        <button id="btnAmigos"></button>
+        <button id="btnConocidos"></button>
+    </div>
 </div>
 
 <div class="carta" id="carta">
-    <h1>¡Adiós, 2025!</h1>
+    <h1 id="tituloCarta">¡Adiós, 2025!</h1>
     <div id="mensaje"></div>
     <button id="despedirBtn">Despedir Año con Estilo</button>
 </div>
