@@ -1,35 +1,37 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farewell 2025</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farewell 2025</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <canvas id="fuegos"></canvas>
 
-<div class="pantalla-inicial" id="inicio">
-  <h2 id="tituloIdioma">Select your language / Sprache wählen</h2>
+<!-- PANTALLA INICIAL -->
+<div class="pantalla" id="pantalla">
 
-  <div id="selectorIdioma">
-    <button data-idioma="es">Español</button>
-    <button data-idioma="en">English</button>
-    <button data-idioma="de">Deutsch</button>
+  <div class="bloque" id="bloque-idioma">
+    <h2>Select your language / Sprache wählen</h2>
+    <button data-lang="es">Español</button>
+    <button data-lang="en">English</button>
+    <button data-lang="de">Deutsch</button>
   </div>
 
-  <div id="selectorDestinatario" style="display:none;">
-    <h2 id="preguntaDestino"></h2>
+  <div class="bloque" id="bloque-destino">
+    <h2 id="pregunta"></h2>
     <button id="btnAmigos"></button>
     <button id="btnConocidos"></button>
   </div>
+
 </div>
 
+<!-- CARTA -->
 <div class="carta" id="carta">
-  <h1 id="tituloCarta"></h1>
-  <div id="mensaje"></div>
-  <button id="despedirBtn"></button>
+  <h1 id="titulo"></h1>
+  <div id="texto"></div>
 </div>
 
 <script src="script.js"></script>
