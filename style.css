@@ -1,96 +1,88 @@
+* {
+  box-sizing: border-box;
+}
+
 html, body {
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  background:#000;
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: white;
   font-family: system-ui, sans-serif;
-  overflow:hidden;
+  height: 100%;
+  overflow: hidden;
 }
 
-/* Canvas */
-#fuegos {
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  z-index:0;
-  display:none;
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: none;
 }
 
-/* Pantalla inicial */
-.pantalla-inicial {
-  position:fixed;
-  inset:0;
-  background:#000;
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:10;
-  text-align:center;
-  padding:20px;
+/* PANTALLA INICIAL */
+.pantalla {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
-.pantalla-inicial h2 {
-  font-size:2.3em;
-  margin-bottom:30px;
+.bloque {
+  text-align: center;
 }
 
-/* Botones */
+#bloque-destino {
+  display: none;
+}
+
 button {
-  padding:16px 36px;
-  font-size:1.2em;
-  margin:12px;
-  border:none;
-  border-radius:14px;
-  background:#00e676;
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
-  transition:transform .2s, background .2s;
+  display: block;
+  margin: 12px auto;
+  padding: 14px 36px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 14px;
+  background: #00e676;
+  color: black;
+  cursor: pointer;
+  transition: transform .2s;
 }
 
 button:hover {
-  transform:scale(1.1);
-  background:#76ff03;
+  transform: scale(1.1);
 }
 
-/* Carta */
+/* CARTA */
 .carta {
-  display:none;
-  position:relative;
-  z-index:5;
-  max-width:650px;
-  margin:60px auto;
-  padding:40px;
-  background:rgba(0,0,0,.8);
-  color:#fff;
-  border-radius:24px;
-  box-shadow:0 0 40px rgba(0,0,0,.8);
-  text-align:center;
-  max-height:80vh;
-  overflow:auto;
+  display: none;
+  position: relative;
+  z-index: 5;
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 40px;
+  background: rgba(0,0,0,.85);
+  border-radius: 24px;
+  text-align: center;
+  overflow-y: auto;
+  max-height: 80vh;
 }
 
-h1 {
-  font-size:2.6em;
-  margin-bottom:30px;
+.carta h1 {
+  font-size: 2.6em;
+  margin-bottom: 30px;
 }
 
-p {
-  font-size:1.2em;
-  line-height:1.6;
-  margin-bottom:22px;
-  opacity:0;
-  transform:translateY(20px);
+.carta p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin-bottom: 22px;
+  opacity: 0;
+  animation: aparecer .6s forwards;
 }
 
 @keyframes aparecer {
-  to {
-    opacity:1;
-    transform:translateY(0);
-  }
+  to { opacity: 1; }
 }
