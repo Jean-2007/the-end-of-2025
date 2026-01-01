@@ -1,39 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Farewell 2025</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adiós 2025</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<canvas id="fuegos"></canvas>
+  <!-- CANVAS FUEGOS -->
+  <canvas id="fuegos"></canvas>
 
-<!-- PANTALLA INICIAL -->
-<div class="pantalla" id="pantalla">
+  <!-- PANTALLA INICIAL -->
+  <div id="inicio" class="pantalla-inicial">
+    <h2 id="tituloIdioma">Select your language / Sprache wählen</h2>
 
-  <div class="bloque" id="bloque-idioma">
-    <h2>Select your language / Sprache wählen</h2>
-    <button data-lang="es">Español</button>
-    <button data-lang="en">English</button>
-    <button data-lang="de">Deutsch</button>
+    <div id="selectorIdioma" class="botones">
+      <button data-idioma="es">Español</button>
+      <button data-idioma="en">English</button>
+      <button data-idioma="de">Deutsch</button>
+    </div>
+
+    <div id="selectorDestino" class="botones oculto">
+      <p id="pregunta"></p>
+      <button id="btnAmigos"></button>
+      <button id="btnConocidos"></button>
+    </div>
   </div>
 
-  <div class="bloque" id="bloque-destino">
-    <h2 id="pregunta"></h2>
-    <button id="btnAmigos"></button>
-    <button id="btnConocidos"></button>
-  </div>
+  <!-- CONTENIDO -->
+  <main id="contenido"></main>
 
-</div>
-
-<!-- CARTA -->
-<div class="carta" id="carta">
-  <h1 id="titulo"></h1>
-  <div id="texto"></div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
